@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Main from './components/Main';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+class App extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <Header />
 
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learning to deploy a React app on the Cloud with Serverless concept
-        </a>
-      </header>
-    </div>
-  );
+        <Main />
+
+        <Footer />
+
+        </div>
+    );
+  }
 }
 
 export default App;
