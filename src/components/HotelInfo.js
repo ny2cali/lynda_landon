@@ -1,9 +1,28 @@
-import React from 'react';
-import accessibilityData from './data/accessibilities.json';
-import servicesData from './data/services.json';
+import React, { useState, useEffect } from 'react';
+//import accessibilityData from './data/accessibilities.json';
+//import servicesData from './data/services.json';
 
 
 const HotelInfo = () => {
+
+  const [accessibilitiesData, setAccessibilitiesData] = useState([]);
+  const [servicesData, setServicesData] = useState([]);
+
+  const loadAccessibilitiesAndServicesData = async() => {
+    // Query the API Gateway
+    const respAccessibilities = await fetch('https://ap73bloyml.execute-api.us-east-1.amazonaws.com/Production/accessibilities');
+    let jsonData = await respAccessibilities.json();
+    setAccessibilitiesData(jsonData);
+
+    const respServices = await fetch('https://ap73bloyml.execute-api.us-east-1.amazonaws.com/Production/services');
+    jsonData = await respServices.json();
+    setServicesData(jsonData);
+  }
+
+  useEffect(() => {
+    // Load the menu links data from the API Gateway
+    loadAccessibilitiesAndServicesData();
+  }, []);
     return (
         
         <div className="scene" id="hotelinfo">
@@ -39,7 +58,7 @@ const HotelInfo = () => {
               <p>We're committed to maintaining the same quality of service for every individual. We offer the following facilities for those with special needs:</p>
               <ul>
               {
-                accessibilityData.map((accessibility) => 
+                accessibilitiesData.map((accessibility) => 
                   <li>{accessibility.name}</li>
                 )
               }
