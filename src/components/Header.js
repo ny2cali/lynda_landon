@@ -6,11 +6,11 @@ const Header = () => {
 
   const loadMenuLinksData = async() => {
     // Query the API Gateway
-    // const resp = await fetch('https://ap73bloyml.execute-api.us-east-1.amazonaws.com/Production/menu_links');
-    // let jsonData = await resp.json();
+    const resp = await fetch('https://ap73bloyml.execute-api.us-east-1.amazonaws.com/Production/menu_links');
+    let jsonData = await resp.json();
     
-    // // Assign response data to our state variable
-    // setMenuLinksData(jsonData);
+    // Assign response data to our state variable
+    setMenuLinksData(jsonData);
   }
 
   useEffect(() => {
